@@ -1,0 +1,18 @@
+[project]
+authors = ["Jermiah Joseph <jermiahjoseph98@gmail.com>"]
+channels = ["conda-forge"]
+description = "Add a short description here"
+name = "orcestra_icb"
+platforms = ["osx-arm64", "win-64"]
+version = "0.1.0"
+
+[tasks]
+download-icb = {cmd = "python bin/orcestra_icb.py"}
+
+[dependencies]
+python = "==3.10"
+rich = ">=13.9.4,<14"
+aiohttp = ">=3.11.4,<4"
+click = ">=8.1.7,<9"
+
+[pypi-dependencies]
