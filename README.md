@@ -4,6 +4,12 @@ This project provides a command-line interface (CLI) to manage and interact with
 
 ## Setup
 
+Clone the repository:
+
+```sh
+git clone https://github.com/jjjermiah/orcestra_icb.git
+```
+
 Ensure you have `pixi` installed.
 
 Then run:
