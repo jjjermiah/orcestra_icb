@@ -307,18 +307,3 @@ def download(dataset_name, output_dir):
 
 if __name__ == "__main__":
     icb()
-
-# Example usage
-# if __name__ == "__main__":
-#     manager = ICBDataManager()
-#     try:
-#         manager.load_from_file("icb_api.json")
-#         # print("Available datasets:")
-#         # print(manager.list_dataset_names())
-#         # print("\nDownload links:")
-#         # print(manager.get_download_links())
-
-#         # Run asynchronous download
-#         asyncio.run(manager.download_all_datasets(output_dir="datasets"))
-#     except Exception as e:
-#         print(f"Error: {e}")

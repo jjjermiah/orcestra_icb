@@ -7,7 +7,7 @@ platforms = ["osx-arm64", "win-64"]
 version = "0.1.0"
 
 [tasks]
-download-icb = {cmd = "python bin/orcestra_icb.py"}
+icb = {cmd = "python bin/orcestra_icb.py"}
 
 [dependencies]
 python = "==3.10"
