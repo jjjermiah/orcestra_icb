@@ -159,7 +159,9 @@ class ICBDataManager:
         os.makedirs(output_dir, exist_ok=True)
 
         async with aiohttp.ClientSession() as session:
-            with Progress() as progress:
+            with Progress(
+                transient=True,
+            ) as progress:
                 tasks = []
                 task_ids = {}
 
@@ -234,7 +236,7 @@ class ICBDataManager:
     async def _download_file(self, session: aiohttp.ClientSession, url: str, output_path: str, 
                              progress: Progress, task_id: TaskID) -> None:
         """
-        Downloads a file from the given URL to the specified path.
+        Downloads a file from the given URL to a temporary path and then moves it to the specified path.
 
         Parameters
         ----------
@@ -249,6 +251,7 @@ class ICBDataManager:
         task_id : TaskID
             The progress task ID associated with the download.
         """
+        temp_output_path = output_path + ".part"
         try:
             async with session.get(url) as response:
                 response.raise_for_status()
@@ -256,14 +259,19 @@ class ICBDataManager:
                 progress.start_task(task_id)
                 progress.update(task_id, total=total_size)
 
-                with open(output_path, 'wb') as file:
+                with open(temp_output_path, 'wb') as file:
                     async for chunk in response.content.iter_chunked(1024):
                         file.write(chunk)
                         progress.update(task_id, advance=len(chunk))
 
+                os.rename(temp_output_path, output_path)
                 print(f"[green]Downloaded: {output_path}[/green]")
         except Exception as e:
+            if os.path.exists(temp_output_path):
+                os.remove(temp_output_path)
             print(f"[red]Failed to download {url}: {e}[/red]")
+        # Mark the task as complete and remove it from the progress tracker.
+        progress.remove_task(task_id)
 
 
 @click.group()
