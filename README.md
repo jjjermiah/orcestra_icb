@@ -1,5 +1,12 @@
 # Orcestra ICB Data Manager
 
+> [!WARNING]
+> This project has been archived and is no longer maintained.
+> 
+> The functionality has been implemented in the [orcestra-downloader python package](https://github.com/bhklab/orcestra-downloader).
+>
+> Please refer to it's repository for downloading icb data.
+
 This project provides a command-line interface (CLI) to manage and interact with a collection of ICB dataset records. The CLI allows you to list available datasets, download all datasets, or download a specific dataset by name.
 
 ## **Demo of downloading all ICB Dataset from Orcestra**
